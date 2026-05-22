@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { normalizeConfig } from "../src/config/schema.js";
 import { DHIKR_LIST } from "../src/dhikr/list.js";
 import { CONFIG_NUDGE, renderStatus } from "../src/status/render.js";
+import { reshapeArabic } from "../src/util/arabic.js";
 import { JAKARTA, at } from "./helpers.js";
 
 const config = normalizeConfig({ location: JAKARTA, dhikr: { enabled: false } });
@@ -70,6 +71,6 @@ describe("line 2 priority", () => {
   it("surfaces a dhikr inside a dhikr window", () => {
     const cfg = normalizeConfig({ location: JAKARTA });
     const [, l2] = renderStatus(cfg, at("2026-05-22", "13:10")).split("\n");
-    expect(DHIKR_LIST.some((d) => l2!.includes(d))).toBe(true);
+    expect(DHIKR_LIST.some((d) => l2!.includes(reshapeArabic(d)))).toBe(true);
   });
 });
