@@ -15,6 +15,7 @@ export async function main(argv: string[]): Promise<void> {
 
   await runSafely(async () => {
     parseSession(await readStdin()); // tolerated; consumed in later phases
-    return renderStatus(loadConfig());
+    // reshape = true: the status line doesn't shape Arabic itself.
+    return renderStatus(loadConfig(), undefined, true);
   });
 }

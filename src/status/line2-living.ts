@@ -3,7 +3,6 @@
 import type { UrgencyTier } from "../types.js";
 import { POST_PRAYER_TASBIH } from "../dhikr/list.js";
 import { dhikrWindow } from "../dhikr/window.js";
-import { reshapeArabic } from "../util/arabic.js";
 import { paint } from "../util/color.js";
 import { PRAYER_LABELS } from "./line1-prayers.js";
 import type { RenderState } from "./state.js";
@@ -20,7 +19,7 @@ function graceText(state: RenderState): string {
     POST_PRAYER_TASBIH.length - 1,
     Math.floor(passed.minutesAgo / Math.max(1, span)),
   );
-  return `${label} ✓ · ${reshapeArabic(POST_PRAYER_TASBIH[idx]!)}`;
+  return `${label} ✓ · ${POST_PRAYER_TASBIH[idx]}`;
 }
 
 export function buildLine2(state: RenderState, theme: Theme, tier: UrgencyTier): string {
@@ -34,7 +33,7 @@ export function buildLine2(state: RenderState, theme: Theme, tier: UrgencyTier):
   const suppressed = config.dhikr.suppressWhenImminent && tier !== "calm";
   if (config.dhikr.enabled && !suppressed) {
     const dhikr = dhikrWindow(now, config.dhikr);
-    if (dhikr) return paint(theme.dhikr, reshapeArabic(dhikr));
+    if (dhikr) return paint(theme.dhikr, dhikr);
   }
 
   return paint(theme.location, `📍 ${config.location.city ?? "location unknown"}`);

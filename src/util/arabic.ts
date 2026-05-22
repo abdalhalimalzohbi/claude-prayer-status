@@ -1,8 +1,11 @@
-// Arabic contextual shaping. Some terminals render every Arabic letter in its
-// isolated form — disconnected — because they don't apply contextual shaping.
-// This replaces each letter with its correct connected presentation form
-// (isolated / initial / medial / final). Logical order is left untouched: the
-// terminal still handles right-to-left reordering itself.
+// Arabic contextual shaping for the status-line hot path. Claude Code's
+// status line renders each Arabic letter in its isolated form — disconnected
+// — because it doesn't apply contextual shaping. This replaces each letter
+// with its connected presentation form (isolated / initial / medial / final).
+// Logical order is left untouched; the status line still reorders RTL itself.
+//
+// NOT applied to plain-terminal output (the `test` command) — a real terminal
+// shapes Arabic natively, and pre-shaped forms would fight that.
 
 // base codepoint -> [isolated, final, initial, medial]; 0 means the form
 // does not exist (right-joining letters have no initial/medial form).
@@ -69,7 +72,7 @@ const joinsForward = (cp: number) => isLetter(cp) && FORMS[cp]![2] !== 0;
 const joinsBackward = (cp: number) => isLetter(cp) && FORMS[cp]![1] !== 0;
 
 // Shapes Arabic letters into their connected presentation forms, in place.
-// Non-Arabic input is returned unchanged.
+// Text with no Arabic is returned unchanged.
 export function reshapeArabic(input: string): string {
   if (!/[؀-ۿ]/.test(input)) return input;
 
@@ -102,7 +105,7 @@ export function reshapeArabic(input: string): string {
     const connPrev =
       prev[i]! !== -1 && joinsForward(cp[prev[i]!]!) && joinsBackward(c);
 
-    // lam-alef ligature: emit one glyph for the lam + alef pair.
+    // lam-alef ligature: one glyph for the lam + alef pair.
     if (c === LAM && next[i]! !== -1 && cp[next[i]!]! in LAM_ALEF) {
       const lig = LAM_ALEF[cp[next[i]!]!]!;
       out += String.fromCodePoint(connPrev ? lig[1] : lig[0]);
