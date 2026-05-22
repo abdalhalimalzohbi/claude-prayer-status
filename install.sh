@@ -1,5 +1,5 @@
 #!/bin/sh
-# Convenience installer for claude-prayer-status.
+# Convenience installer for adhanline.
 set -e
 
 if ! command -v npm >/dev/null 2>&1; then
@@ -7,10 +7,10 @@ if ! command -v npm >/dev/null 2>&1; then
   exit 1
 fi
 
-echo "Installing claude-prayer-status globally…"
-npm install -g claude-prayer-status
+echo "Installing adhanline globally…"
+npm install -g adhanline
 
 echo "Wiring it into Claude Code…"
-claude-prayer-status install
+adhanline install
 
 echo "Done. Restart Claude Code to see the prayer line."

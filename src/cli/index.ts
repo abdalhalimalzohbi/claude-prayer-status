@@ -8,17 +8,17 @@ import { runTmux } from "./tmux.js";
 
 const VERSION = "0.1.0";
 
-const HELP = `claude-prayer-status — a live Islamic prayer status line for Claude Code
+const HELP = `adhanline — a live Islamic prayer status line for Claude Code
 
 Usage:
-  claude-prayer-status                  render the status line (reads stdin)
-  claude-prayer-status install [--project]
-  claude-prayer-status doctor
-  claude-prayer-status test [--at HH:MM] [--date YYYY-MM-DD] [--theme NAME]
-  claude-prayer-status config [get|set <key> [value]]
-  claude-prayer-status tasbih
-  claude-prayer-status tmux
-  claude-prayer-status --version
+  adhanline                  render the status line (reads stdin)
+  adhanline install [--project]
+  adhanline doctor
+  adhanline test [--at HH:MM] [--date YYYY-MM-DD] [--theme NAME]
+  adhanline config [get|set <key> [value]]
+  adhanline tasbih
+  adhanline tmux
+  adhanline --version
 `;
 
 function parseFlags(args: string[]): Record<string, string> {

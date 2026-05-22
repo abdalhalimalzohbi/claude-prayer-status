@@ -2,7 +2,7 @@
 import { homedir } from "node:os";
 import { join } from "node:path";
 
-const APP = "claude-prayer-status";
+const APP = "adhanline";
 
 export function configDir(): string {
   if (process.platform === "win32") {

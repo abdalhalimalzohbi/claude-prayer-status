@@ -1,13 +1,13 @@
 <div align="center">
 
-# 🕌 claude-prayer-status
+# 🕌 adhanline
 
 ### A live Islamic prayer status line for Claude Code
 
 Calm-to-urgent prayer strip · rotating dhikr · local prayer-time calculation — right inside your editor.
 
-[![CI](https://github.com/abdalhalimalzohbi/claude-prayer-status/actions/workflows/ci.yml/badge.svg)](https://github.com/abdalhalimalzohbi/claude-prayer-status/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/claude-prayer-status.svg)](https://www.npmjs.com/package/claude-prayer-status)
+[![CI](https://github.com/abdalhalimalzohbi/adhanline/actions/workflows/ci.yml/badge.svg)](https://github.com/abdalhalimalzohbi/adhanline/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/adhanline.svg)](https://www.npmjs.com/package/adhanline)
 [![node](https://img.shields.io/badge/node-%E2%89%A518-brightgreen.svg)](https://nodejs.org)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![platform](https://img.shields.io/badge/platform-macOS%20%C2%B7%20Linux%20%C2%B7%20Windows-lightgrey.svg)](#requirements)
@@ -20,7 +20,7 @@ Calm-to-urgent prayer strip · rotating dhikr · local prayer-time calculation �
 📍 Bekasi
 ```
 
-`claude-prayer-status` renders two lines at the bottom of your Claude Code session — a
+`adhanline` renders two lines at the bottom of your Claude Code session — a
 prayer strip that tracks the day and a living line that rotates between your location
 and Arabic dhikr. Prayer times are calculated **locally** from your coordinates, so the
 status line does **zero network calls** on a warm cache and **never crashes** into your
@@ -80,8 +80,8 @@ terminal.
 ### npm (recommended)
 
 ```sh
-npm install -g claude-prayer-status
-claude-prayer-status install
+npm install -g adhanline
+adhanline install
 ```
 
 `install` merges the status line into Claude Code's `settings.json` (backing up the
@@ -90,23 +90,23 @@ original) and walks you through confirming your location. Restart Claude Code �
 ### One-line script
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/abdalhalimalzohbi/claude-prayer-status/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/abdalhalimalzohbi/adhanline/main/install.sh | sh
 ```
 
 ### Manual
 
 ```sh
-git clone https://github.com/abdalhalimalzohbi/claude-prayer-status.git
-cd claude-prayer-status
+git clone https://github.com/abdalhalimalzohbi/adhanline.git
+cd adhanline
 npm install && npm run build
 npm link
-claude-prayer-status install
+adhanline install
 ```
 
 ### Project-level install
 
 ```sh
-claude-prayer-status install --project   # writes ./.claude/settings.json
+adhanline install --project   # writes ./.claude/settings.json
 ```
 
 ---
@@ -135,7 +135,7 @@ claude-prayer-status install --project   # writes ./.claude/settings.json
 
 ## Theme gallery
 
-Set with `claude-prayer-status config set display.theme <name>` or preview with
+Set with `adhanline config set display.theme <name>` or preview with
 `test --theme <name>`.
 
 **minimal** — the calm default: dimmed history, a quiet bold highlight.
@@ -165,15 +165,15 @@ Set with `claude-prayer-status config set display.theme <name>` or preview with
 | `tmux` | Single-line render for a tmux status segment. |
 
 ```sh
-claude-prayer-status test --at 18:05 --theme neon
-claude-prayer-status doctor
+adhanline test --at 18:05 --theme neon
+adhanline doctor
 ```
 
 ---
 
 ## Configuration
 
-Config lives at `~/.config/claude-prayer-status/config.json` (XDG-aware;
+Config lives at `~/.config/adhanline/config.json` (XDG-aware;
 `%APPDATA%` on Windows). Everything works with zero config.
 
 | Key | Default | Notes |
@@ -196,9 +196,9 @@ Config lives at `~/.config/claude-prayer-status/config.json` (XDG-aware;
 | `dhikr.rotation` | `sequential` | `sequential` · `random` |
 
 ```sh
-claude-prayer-status config                          # interactive editor
-claude-prayer-status config set display.theme neon   # scriptable
-claude-prayer-status config get calculation.method
+adhanline config                          # interactive editor
+adhanline config set display.theme neon   # scriptable
+adhanline config get calculation.method
 ```
 
 ---
@@ -250,7 +250,7 @@ See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ## License
 
-[MIT](LICENSE) © claude-prayer-status contributors
+[MIT](LICENSE) © adhanline contributors
 
 <div align="center">
 <sub>Times are computed locally and may differ from your local authority. Verify when in doubt.</sub>

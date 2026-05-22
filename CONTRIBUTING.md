@@ -1,13 +1,13 @@
 # Contributing
 
-Thanks for your interest in improving **claude-prayer-status**. Contributions of
+Thanks for your interest in improving **adhanline**. Contributions of
 all sizes are welcome — bug reports, fixes, themes, and docs.
 
 ## Development setup
 
 ```sh
-git clone https://github.com/abdalhalimalzohbi/claude-prayer-status.git
-cd claude-prayer-status
+git clone https://github.com/abdalhalimalzohbi/adhanline.git
+cd adhanline
 npm install
 npm run build
 npm test
@@ -26,7 +26,7 @@ npm run build   # compile to dist/
 Preview the status line without waiting for the clock:
 
 ```sh
-node bin/claude-prayer-status.js test --at 17:40 --theme neon
+node bin/adhanline.js test --at 17:40 --theme neon
 ```
 
 ## Guidelines
@@ -49,7 +49,7 @@ node bin/claude-prayer-status.js test --at 17:40 --theme neon
 
 ## Reporting bugs
 
-Open an issue with the output of `claude-prayer-status doctor`, your OS, and
+Open an issue with the output of `adhanline doctor`, your OS, and
 your Claude Code version.
 
 By contributing you agree your work is licensed under the project's

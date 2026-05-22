@@ -9,7 +9,7 @@ import { buildState } from "./state.js";
 import { resolveTheme } from "./theme.js";
 import { classifyUrgency } from "./urgency.js";
 
-export const CONFIG_NUDGE = "🕌 run: claude-prayer-status config";
+export const CONFIG_NUDGE = "🕌 run: adhanline config";
 
 // `reshape` pre-shapes Arabic into connected presentation forms — needed for
 // the Claude Code status line, which doesn't shape Arabic itself. Plain

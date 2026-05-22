@@ -26,7 +26,7 @@ export async function runInstall(options: InstallOptions): Promise<void> {
 
   const block: Record<string, unknown> = {
     type: "command",
-    command: "claude-prayer-status",
+    command: "adhanline",
     padding: 0,
   };
   if (refreshOk) block.refreshInterval = 60;
@@ -57,7 +57,7 @@ export async function runInstall(options: InstallOptions): Promise<void> {
       config.location = await confirmDetectedLocation(detection.location);
     } else {
       stdout.write(
-        "Could not detect location. Run `claude-prayer-status config` to set it manually.\n",
+        "Could not detect location. Run `adhanline config` to set it manually.\n",
       );
     }
     saveConfig(config);

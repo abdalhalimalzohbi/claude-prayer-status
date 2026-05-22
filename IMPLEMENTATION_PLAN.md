@@ -1,4 +1,4 @@
-# claude-prayer-status — Implementation Plan
+# adhanline — Implementation Plan
 
 > An open-source, cross-platform CLI that renders a live Islamic prayer status line inside Claude Code. Built as an npm package. Auto-detects location, calculates prayer times locally, and displays a calm-to-urgent prayer strip with a rotating dhikr line.
 
@@ -40,7 +40,7 @@ These mechanics are confirmed against current Claude Code docs and must be respe
   {
     "statusLine": {
       "type": "command",
-      "command": "claude-prayer-status",
+      "command": "adhanline",
       "padding": 0,
       "refreshInterval": 60
     }
@@ -110,9 +110,9 @@ IP Geolocation (first run / weekly) → Coordinates → Local Prayer Calculation
 ## 5. Project structure
 
 ```
-claude-prayer-status/
+adhanline/
 ├── bin/
-│   └── claude-prayer-status.js      # thin entry; routes to hot path or subcommands
+│   └── adhanline.js      # thin entry; routes to hot path or subcommands
 ├── src/
 │   ├── index.ts                     # entrypoint: detect subcommand vs status render
 │   ├── status/
@@ -177,11 +177,11 @@ claude-prayer-status/
 
 Respect `XDG_CONFIG_HOME` / `XDG_CACHE_HOME` with correct per-OS fallbacks:
 
-- **Config:** `${XDG_CONFIG_HOME:-~/.config}/claude-prayer-status/config.json`
-- **Cache:** `${XDG_CACHE_HOME:-~/.cache}/claude-prayer-status/`
+- **Config:** `${XDG_CONFIG_HOME:-~/.config}/adhanline/config.json`
+- **Cache:** `${XDG_CACHE_HOME:-~/.cache}/adhanline/`
 - **Windows:** use `%APPDATA%` (config) and `%LOCALAPPDATA%` (cache). Implement in `config/paths.ts`; do not hardcode `~/`.
 
-> The original idea of a single `~/.claude-prayer-status.json` dotfile is replaced by the XDG split (config vs cache) since the feature set carries real state (themes, cache, mode). Provide a one-time migration if a legacy dotfile is found.
+> The original idea of a single `~/.adhanline.json` dotfile is replaced by the XDG split (config vs cache) since the feature set carries real state (themes, cache, mode). Provide a one-time migration if a legacy dotfile is found.
 
 ### 6.2 Config schema (with defaults)
 
@@ -232,7 +232,7 @@ Respect `XDG_CONFIG_HOME` / `XDG_CACHE_HOME` with correct per-OS fallbacks:
 
 ### 6.3 `config` command
 
-`claude-prayer-status config` opens an interactive editor (prompts) to set: city/timezone (manual override), calculation method, madhab, theme, dhikr toggle/interval, ramadan mode. Writes atomically. Non-interactive form: `config set <key> <value>` and `config get <key>` for scripting.
+`adhanline config` opens an interactive editor (prompts) to set: city/timezone (manual override), calculation method, madhab, theme, dhikr toggle/interval, ramadan mode. Writes atomically. Non-interactive form: `config set <key> <value>` and `config get <key>` for scripting.
 
 ---
 
@@ -317,7 +317,7 @@ Each adapter normalizes to `{ city, country, timezone, latitude, longitude }`. O
 
 On first run (no confirmed location), detect via IP then **show the detected city and ask the user to confirm or correct it** before caching as `confirmed: true`. One prompt, then never again. This guards against VPN/corporate/mobile IPs placing the user in the wrong city (→ wrong prayer times).
 
-Because the status-line hot path is non-interactive, first-run detection/confirmation is driven by `install`/`config`/`doctor` (interactive contexts). If the hot path runs with no confirmed location, it should: use any cached/auto location if present (rendering normally), else print a one-line nudge like `🕌 run: claude-prayer-status config` instead of guessing.
+Because the status-line hot path is non-interactive, first-run detection/confirmation is driven by `install`/`config`/`doctor` (interactive contexts). If the hot path runs with no confirmed location, it should: use any cached/auto location if present (rendering normally), else print a one-line nudge like `🕌 run: adhanline config` instead of guessing.
 
 ### 8.3 Travel detection (`location/travel.ts`)
 
@@ -398,9 +398,9 @@ Provide `test --at` as a manual visual harness in addition to automated tests.
 
 ## 13. Distribution
 
-- **Package name:** `claude-prayer-status` (verify availability on npm; pick a scoped name if taken).
-- **`package.json`:** `bin` maps `claude-prayer-status` → `bin/claude-prayer-status.js`; `engines.node >= 18`; ship compiled JS (`dist/`) + types; `files` whitelist; `prepublishOnly` builds.
-- **Install:** primary path `npm i -g claude-prayer-status`; also provide `install.sh` convenience (installs globally, runs `install` to wire up `settings.json` + first-run location confirm).
+- **Package name:** `adhanline` (verify availability on npm; pick a scoped name if taken).
+- **`package.json`:** `bin` maps `adhanline` → `bin/adhanline.js`; `engines.node >= 18`; ship compiled JS (`dist/`) + types; `files` whitelist; `prepublishOnly` builds.
+- **Install:** primary path `npm i -g adhanline`; also provide `install.sh` convenience (installs globally, runs `install` to wire up `settings.json` + first-run location confirm).
 - **License:** MIT.
 - **README:** quick start (3 commands), the two-line example, config reference, theme gallery, `doctor`/`test` usage, the honest note on notifications (see §15), and a fiqh/disclaimer note (times are computed; verify against local authority; methods/madhab are configurable).
 
@@ -433,7 +433,7 @@ Ramadan mode (Suhoor/Iftar reframing, auto via Hijri); multi-instance niceties v
 
 ## 16. Acceptance criteria (definition of done for v1 = Phases 0–1)
 
-1. `npm i -g claude-prayer-status && claude-prayer-status install` wires up Claude Code and confirms location interactively.
+1. `npm i -g adhanline && adhanline install` wires up Claude Code and confirms location interactively.
 2. With a warm cache, the default invocation prints the two-line status (matching the reference layout) in well under 100ms and performs **zero** network calls.
 3. Piping empty or malformed stdin still renders correctly.
 4. Killing network access still renders from cache; with no cache, it shows a safe nudge — never a crash or stack trace.

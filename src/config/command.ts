@@ -44,7 +44,7 @@ function parseValue(raw: string): unknown {
 
 function configGet(key: string | undefined): void {
   if (!key) {
-    stdout.write("usage: claude-prayer-status config get <key>\n");
+    stdout.write("usage: adhanline config get <key>\n");
     return;
   }
   const value = getByPath(loadConfig(), key);
@@ -53,7 +53,7 @@ function configGet(key: string | undefined): void {
 
 function configSet(key: string | undefined, raw: string | undefined): void {
   if (!key || raw === undefined) {
-    stdout.write("usage: claude-prayer-status config set <key> <value>\n");
+    stdout.write("usage: adhanline config set <key> <value>\n");
     return;
   }
   const config = loadConfig() as unknown as Record<string, unknown>;

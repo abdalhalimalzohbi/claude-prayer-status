@@ -28,4 +28,4 @@ Initial release.
 - **Reliability:** universal error boundary (never crashes the terminal),
   tolerant stdin parsing, atomic file caching, sub-100 ms warm renders.
 
-[0.1.0]: https://github.com/abdalhalimalzohbi/claude-prayer-status/releases/tag/v0.1.0
+[0.1.0]: https://github.com/abdalhalimalzohbi/adhanline/releases/tag/v0.1.0

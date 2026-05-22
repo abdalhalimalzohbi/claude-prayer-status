@@ -31,7 +31,7 @@ export async function runDoctor(): Promise<void> {
     if (fresh) evaluateDrift(loc, fresh.location);
   }
 
-  stdout.write("claude-prayer-status — doctor\n\nLocation\n");
+  stdout.write("adhanline — doctor\n\nLocation\n");
   line("city", loc.city ?? "(unset)");
   line("country", loc.country ?? "(unset)");
   line("timezone", loc.timezone ?? "(unset)");

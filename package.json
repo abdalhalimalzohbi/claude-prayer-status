@@ -1,5 +1,5 @@
 {
-  "name": "claude-prayer-status",
+  "name": "adhanline",
   "version": "0.1.0",
   "description": "A live Islamic prayer status line for Claude Code — local prayer-time calculation, rotating dhikr, and a calm-to-urgent prayer strip.",
   "keywords": [
@@ -13,20 +13,20 @@
   ],
   "license": "MIT",
   "author": "abdalhalimalzohbi",
-  "homepage": "https://github.com/abdalhalimalzohbi/claude-prayer-status#readme",
+  "homepage": "https://github.com/abdalhalimalzohbi/adhanline#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abdalhalimalzohbi/claude-prayer-status.git"
+    "url": "git+https://github.com/abdalhalimalzohbi/adhanline.git"
   },
   "bugs": {
-    "url": "https://github.com/abdalhalimalzohbi/claude-prayer-status/issues"
+    "url": "https://github.com/abdalhalimalzohbi/adhanline/issues"
   },
   "type": "module",
   "engines": {
     "node": ">=18"
   },
   "bin": {
-    "claude-prayer-status": "bin/claude-prayer-status.js"
+    "adhanline": "bin/adhanline.js"
   },
   "main": "dist/index.js",
   "files": [
